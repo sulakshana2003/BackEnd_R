@@ -8,12 +8,13 @@
 // prepTimeMinutes (optional)
 // taxRate (optional)
 // tags  (array of strings, optional)
-// stock
+// dailySpecial (boolean, optional)
 
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
+    pid: { type: String, unique: true },
     name: { type: String, required: true },
     category: {
       type: mongoose.Schema.Types.ObjectId,
@@ -28,7 +29,7 @@ const productSchema = new mongoose.Schema(
     prepTimeMinutes: { type: Number },
     taxRate: { type: Number },
     tags: [{ type: String }],
-    stock: { type: Number, default: 0 },
+    dailySpecial: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
