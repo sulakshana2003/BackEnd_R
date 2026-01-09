@@ -1,8 +1,13 @@
 import express from "express";
-import { createProduct } from "../controllers/productController.js";
+import {
+  createProduct,
+  listProducts,
+} from "../controllers/productController.js";
+import { isAdmin } from "../middleware/auth.js";
 
 const productRouter = express.Router();
 
-productRouter.post("/", createProduct);
+productRouter.post("/", isAdmin, createProduct);
+productRouter.get("/", listProducts);
 
 export default productRouter;

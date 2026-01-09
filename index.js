@@ -5,6 +5,7 @@ import { connectDB } from "./utils/db.js";
 import { authMiddleware } from "./middleware/auth.js";
 import userRouter from "./routes/userRoute.js";
 import categoryRouter from "./routes/categoryRoute.js";
+import productRouter from "./routes/productRoute.js";
 
 // Load environment variables from .env file
 
@@ -22,6 +23,7 @@ app.use(authMiddleware);
 //routes
 app.use("/api/users", userRouter);
 app.use("/api/cat", categoryRouter);
+app.use("/api/products", productRouter);
 
 // Start the server
 app.listen(PORT, () => {

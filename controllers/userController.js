@@ -104,36 +104,12 @@ export const loginUser = async (req, res) => {
       phone: user.phone,
       image: user.image,
     };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
-};
-
-//is admin middleware
-
-export const isAdmin = (req, res, next) => {
-  if (req.user && req.user.role === "admin") {
-    next();
-  } else {
-    return res.status(403).json({ message: "Admin access required" });
-  }
-};
-
-//has role middleware
-
-export const hasRole = (roles) => {
-  return (req, res, next) => {
-    if (req.user && roles.includes(req.user.role)) {
-      next();
-    } else {
-      return res.status(403).json({ message: "Access denied" });
-    }
-  };
 };
 
 //Login with Google(Email verification dont required)
