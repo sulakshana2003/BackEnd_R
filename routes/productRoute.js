@@ -8,6 +8,6 @@ import { isAdmin } from "../middleware/auth.js";
 const productRouter = express.Router();
 
 productRouter.post("/", isAdmin, createProduct);
-productRouter.get("/", listProducts);
+productRouter.get("/list", listProducts);
 
 export default productRouter;
